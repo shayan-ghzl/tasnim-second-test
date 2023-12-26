@@ -3,10 +3,10 @@ export interface IQuery {
 }
 
 export interface IParam {
-  [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+  [param: string]: string | number | boolean | undefined | ReadonlyArray<string | number | boolean>;
 }
 
-export interface TaxQuery extends IQuery {
+export interface IQueryUom extends IQuery {
   page: number;
   take: number;
   order: string;
@@ -14,39 +14,7 @@ export interface TaxQuery extends IQuery {
   distinct_fields: string;
 }
 
-export interface Tax {
-  id: number;
-  created_at: string;
-  updated_at: string;
-  updated_version: number;
-  created_by: string;
-  updated_by: null;
-  active: true;
-  division_id: number;
-  division_name: string;
-  tax_id: string;
-  tax_description: string;
-  tax1_name: null;
-  tax1_percent: null;
-  tax1_purchase_account: null;
-  tax1_sales_account: null;
-  tax2_name: null;
-  tax2_percent: null;
-  tax2_purchase_account: null;
-  tax2_sales_account: null;
-}
-
-export interface IResponseTax {
-  results: Tax[];
-  page_info: {
-    total_results: number;
-    total_pages: number;
-    page: number;
-    result_per_page: number;
-  };
-}
-
-export interface IParamRegister extends IParam{
+export interface IParamRegister extends IParam {
   email: string;
   password: string;
 }
@@ -56,3 +24,41 @@ export interface IResponseRegister {
   refresh_token: string;
 }
 
+export interface IResponse {
+  results: any[];
+  page_info: IPagination;
+}
+
+export interface IPagination {
+  total_results: number;
+  total_pages: number;
+  page: number;
+  result_per_page: number;
+}
+
+export interface IResponseUom extends IResponse {
+  results: Uom[];
+  page_info: IPagination;
+}
+
+export interface Uom {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  updated_version: number;
+  created_by: string;
+  updated_by?: string;
+  active: boolean;
+  division_id?: number;
+  division_name: string;
+  uom?: string;
+  uom_description?: string;
+}
+
+export interface IParamUom extends IParam {
+  active: boolean;
+  division_id: number;
+  division_name?: string;
+  uom: string;
+  uom_description?: string;
+}
