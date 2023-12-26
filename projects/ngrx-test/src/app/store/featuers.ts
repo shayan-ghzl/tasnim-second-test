@@ -15,6 +15,42 @@ export const listFeature = createFeature({
     reducer: createReducer(
         listInitialState as ITax[] | null,
         on(ListActions.setList, (state, prop) => prop.list),
+        on(ListActions.removeItem, (state, prop) => {
+            if (state) {
+                return state.filter(p => p.id != prop.id);
+            }
+            return state;
+        }),
+        on(ListActions.updateItem, (state, prop) => {
+            if (state) {
+                return state.map(p => {
+                    if (p.id === prop.item.id) {
+                        return prop.item;
+                    } else {
+                        return p;
+                    }
+                });
+            }
+            return state;
+        }),
+        on(ListActions.addItem, (state, prop) => {
+            if (state) {
+                let isAdd = true;
+                const updatedList = state.map(p => {
+                    if (p.id == prop.item.id) {
+                        isAdd = false;
+                        return prop.item;
+                    } else {
+                        return p;
+                    }
+                });
+                if (isAdd) {
+                    updatedList.push(prop.item);
+                }
+                return updatedList;
+            }
+            return state;
+        }),
     ),
 });
 

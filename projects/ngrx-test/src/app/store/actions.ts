@@ -6,6 +6,9 @@ export const ListActions = createActionGroup({
     events: {
         'Fire Effect': emptyProps(),
         'Set List': props<{ list: ITax[]; }>(),
+        'Remove Item': props<{ id: number; }>(),
+        'Update Item': props<{ item: ITax; }>(),
+        'Add Item': props<{ item: ITax; }>(),
     },
 });
 
