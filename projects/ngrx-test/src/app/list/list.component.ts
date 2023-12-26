@@ -2,11 +2,13 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 import { Subscription, tap } from 'rxjs';
 import { ApiService } from '../shared/services/api.service';
 import { ListActions } from '../store/actions';
@@ -27,11 +29,13 @@ export enum AddORUpdate {
     ButtonModule,
     DialogModule,
     InputTextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [MessageService]
 })
 export default class ListComponent implements OnDestroy {
 
@@ -71,7 +75,12 @@ export default class ListComponent implements OnDestroy {
     private store: Store<ApplicationState>,
     private apiService: ApiService,
     private cdr: ChangeDetectorRef,
+    private messageService: MessageService
   ) { }
+
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Message Content' });
+  }
 
   updateItem(): void {
     this.subscription.add(
@@ -86,6 +95,8 @@ export default class ListComponent implements OnDestroy {
           if (response) {
             this.store.dispatch(ListActions.updateItem({ item: response }));
             this.visible = false;
+          } else {
+            this.showError();
           }
           this.dialogSubmitButtonLoading = false;
           this.cdr.markForCheck();
@@ -105,6 +116,8 @@ export default class ListComponent implements OnDestroy {
           if (response) {
             this.store.dispatch(ListActions.addItem({ item: response }));
             this.visible = false;
+          } else {
+            this.showError();
           }
           this.dialogSubmitButtonLoading = false;
           this.cdr.markForCheck();
@@ -119,6 +132,8 @@ export default class ListComponent implements OnDestroy {
         tap(response => {
           if (response) {
             this.store.dispatch(ListActions.removeItem({ id: response.id }));
+          } else {
+            this.showError();
           }
         })
       ).subscribe()
