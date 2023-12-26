@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+@import "./assets/scss/bootstrap-reboot.scss";
+@import "./assets/scss/font-initialize.scss";
+// --------------------------------
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 4px;
+  font-size: 14px;
+  color: #dc3545;
+}
+
+.ng-invalid.ng-touched~.invalid-feedback {
+  display: block;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+// --------------------------------
+.shadow {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+// --------------------------------
+p-progressSpinner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
