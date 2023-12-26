@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -23,7 +23,8 @@ import { ApplicationState } from '../store/featuers';
     InputTextModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class LoginComponent {
   btnLoading = false;
@@ -40,6 +41,7 @@ export default class LoginComponent {
     private storageService: StorageService,
     private store: Store<ApplicationState>,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   @HostListener('document:keyup.enter')
@@ -63,6 +65,7 @@ export default class LoginComponent {
         }),
         finalize(() => {
           this.btnLoading = false;
+          this.cdr.markForCheck();
         })
       ).subscribe()
     );

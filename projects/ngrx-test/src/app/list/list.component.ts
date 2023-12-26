@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
@@ -14,7 +14,8 @@ import { ApplicationState, listFeature } from '../store/featuers';
     TableModule
   ],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ListComponent {
   list$ = this.store.select(listFeature.selectListState);

@@ -1,2 +1,4 @@
-<p-progressSpinner *ngIf="loading$ | async" />
+@if(loading$ | async){
+    <p-progressSpinner />
+}
 <router-outlet></router-outlet>
