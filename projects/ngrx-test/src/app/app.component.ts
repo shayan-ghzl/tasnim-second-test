@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -8,6 +9,7 @@ import { ApplicationState, LoadingFeature } from './store/featuers';
   selector: 'app-root',
   standalone: true,
   imports: [
+    AsyncPipe,
     RouterOutlet,
     ProgressSpinnerModule
   ],

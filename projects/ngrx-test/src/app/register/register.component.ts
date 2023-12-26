@@ -44,7 +44,7 @@ export default class RegisterComponent {
 
   @HostListener('document:keyup.enter')
   submit() {
-    if (this.formGroup.invalid) {
+    if (this.formGroup.invalid || this.btnLoading) {
       return;
     }
     this.btnLoading = true;
