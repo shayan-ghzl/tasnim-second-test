@@ -11,12 +11,12 @@
         </div>
         <div class="form-field">
           <label class="form-label">Password</label>
-          <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" />
           <small class="invalid-feedback">
             This field is required
           </small>
         </div>
-        <p-button type="submit" label="Register" styleClass="p-button-sm" [disabled]="formGroup.invalid" [loading]="btnLoading"></p-button>
+        <p-button type="submit" label="Register" styleClass="p-button-sm" [disabled]="formGroup.invalid || btnLoading" [loading]="btnLoading" />
       </form>
     </div>
   

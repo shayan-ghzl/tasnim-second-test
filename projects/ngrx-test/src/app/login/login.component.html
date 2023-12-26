@@ -16,7 +16,7 @@
             This field is required
           </small>
         </div>
-        <p-button type="submit" label="Submit" styleClass="p-button-sm" [disabled]="formGroup.invalid" [loading]="btnLoading" />
+        <p-button type="submit" label="Submit" styleClass="p-button-sm" [disabled]="formGroup.invalid || btnLoading" [loading]="btnLoading" />
       </form>
     </div>
   
