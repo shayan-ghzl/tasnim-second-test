@@ -1,0 +1,30 @@
+:host {
+    ::ng-deep {
+      .p-password, .p-inputtext {
+        width: 100%;
+      }
+      .p-button, p-button {
+        width: 100%;
+        justify-content: center;
+      }
+      .p-button-label{
+        flex-grow: 0;
+      }
+    }
+  }
+  .component-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .form-container {
+    width: 300px;
+    border: 1px solid #c9c9c9;
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .form-field {
+    margin-bottom: 16px;
+  }
+  

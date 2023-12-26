@@ -1,0 +1,24 @@
+<div class="component-container">
+
+    <div class="form-container shadow">
+      <form [formGroup]="formGroup" (ngSubmit)="submit()" autocomplete="off">
+        <div class="form-field">
+          <label class="form-label">Email</label>
+          <input type="text" autocomplete="off" pInputText formControlName="email">
+          <small class="invalid-feedback">
+            This field is required
+          </small>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Password</label>
+          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" />
+          <small class="invalid-feedback">
+            This field is required
+          </small>
+        </div>
+        <p-button type="submit" label="Submit" styleClass="p-button-sm" [disabled]="formGroup.invalid" [loading]="btnLoading" />
+      </form>
+    </div>
+  
+  </div>
+  

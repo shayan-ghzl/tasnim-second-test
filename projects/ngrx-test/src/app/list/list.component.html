@@ -1,0 +1,29 @@
+<ng-container *ngIf="(list$ | async) as list;else loadingTemplate">
+    <p-table [value]="list" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>created at</th>
+                <th>created by</th>
+                <th>division name</th>
+                <th>tax description</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tax>
+            <tr>
+                <td>{{ tax.created_at }}</td>
+                <td>{{ tax.created_by }}</td>
+                <td>{{ tax.division_name }}</td>
+                <td>{{ tax.tax_description }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="4">Table is empty!</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-container>
+
+<ng-template #loadingTemplate>
+    <p-progressSpinner />
+</ng-template>
