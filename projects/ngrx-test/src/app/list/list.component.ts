@@ -1,24 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ApplicationState, LoadingFeature } from './store/featuers';
+import { TableModule } from 'primeng/table';
+import { ApplicationState, listFeature } from '../store/featuers';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-list',
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    TableModule
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  loading$ = this.store.select(LoadingFeature.selectLoadingState);
+export default class ListComponent {
+  list$ = this.store.select(listFeature.selectListState);
 
   constructor(
     private store: Store<ApplicationState>,
