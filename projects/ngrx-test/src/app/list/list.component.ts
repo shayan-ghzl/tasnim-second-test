@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -9,7 +8,6 @@ import { ApplicationState, listFeature } from '../store/featuers';
   selector: 'app-list',
   standalone: true,
   imports: [
-    CommonModule,
     ProgressSpinnerModule,
     TableModule
   ],
