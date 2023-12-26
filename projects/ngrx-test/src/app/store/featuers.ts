@@ -1,19 +1,19 @@
 import { ActionReducerMap, createFeature, createReducer, on } from "@ngrx/store";
-import { ITax } from "../shared/models/list";
+import { Tax } from "../shared/models/list";
 import { ListActions, LoadingActions } from "./actions";
 
 
 export interface ApplicationState {
-    list: ITax[] | null;
+    list: Tax[] | null;
     loading: boolean;
 }
 
-const listInitialState: ITax[] | null = null;
+const listInitialState: Tax[] | null = null;
 
 export const listFeature = createFeature({
     name: 'list',
     reducer: createReducer(
-        listInitialState as ITax[] | null,
+        listInitialState as Tax[] | null,
         on(ListActions.setList, (state, prop) => prop.list),
         on(ListActions.removeItem, (state, prop) => {
             if (state) {

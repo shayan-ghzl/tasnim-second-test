@@ -1,14 +1,14 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { ITax } from "../shared/models/list";
+import { Tax } from "../shared/models/list";
 
 export const ListActions = createActionGroup({
     source: 'List',
     events: {
         'Fire Effect': emptyProps(),
-        'Set List': props<{ list: ITax[]; }>(),
+        'Set List': props<{ list: Tax[]; }>(),
         'Remove Item': props<{ id: number; }>(),
-        'Update Item': props<{ item: ITax; }>(),
-        'Add Item': props<{ item: ITax; }>(),
+        'Update Item': props<{ item: Tax; }>(),
+        'Add Item': props<{ item: Tax; }>(),
     },
 });
 

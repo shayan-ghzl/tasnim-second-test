@@ -2,6 +2,10 @@ export interface IQuery {
   [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
 }
 
+export interface IParam {
+  [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+}
+
 export interface TaxQuery extends IQuery {
   page: number;
   take: number;
@@ -10,7 +14,7 @@ export interface TaxQuery extends IQuery {
   distinct_fields: string;
 }
 
-export interface ITax {
+export interface Tax {
   id: number;
   created_at: string;
   updated_at: string;
@@ -33,7 +37,7 @@ export interface ITax {
 }
 
 export interface IResponseTax {
-  results: ITax[];
+  results: Tax[];
   page_info: {
     total_results: number;
     total_pages: number;
@@ -42,7 +46,7 @@ export interface IResponseTax {
   };
 }
 
-export interface IParamRegister {
+export interface IParamRegister extends IParam{
   email: string;
   password: string;
 }
